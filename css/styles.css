@@ -31,4 +31,14 @@
   border-style: solid;
   border-color: green;
   border-width: 1px;
+  border-radius: 10px;
+}
+
+.tile p {
+  text-align: center;
+}
+
+.tile span {
+  text-align: center;
+  font-size: 100px;
 }
