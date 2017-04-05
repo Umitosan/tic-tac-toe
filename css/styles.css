@@ -1,0 +1,32 @@
+
+
+.user-input {
+  text-align: center;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+.center-board {
+  /*text-align: center;*/
+  /*margin: 80px;*/
+}
+
+#row1 {
+
+}
+
+#row1 div {
+  height: 150px;
+}
+
+.tileCol {
+  padding: 0px;
+}
+
+.tileCol div {
+  border-style: solid;
+  border-color: green;
+  border-width: 1px;
+}
