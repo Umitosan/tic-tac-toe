@@ -6,20 +6,23 @@ function Board() {
   this.playerTurn = -1;
 }
 
-// Board.prototype.createBoard = function() {
-//
-// }
+var createBoard = function() {
+  var newBoard = new Board();
+    for (i = 0 ; i < 9 ; i++) {
+      let tmpTile = new Tile();
+      newBoard.tilesArr.push(tmpTile);
+    }
+  console.log(newBoard);
+  return newBoard;
+}
+
 // Board.prototype.updateBoard = function() {
 //
 // }
 
-// function Tile() {
-//   this.color = color;
-// }
-// Tile.prototype.changeColor = function() {
-//
-// }
-
+function Tile() {
+  this.piece = "";
+}
 
 var placePiece = function(myToggle) {
   let playerPiece = "";
@@ -33,19 +36,17 @@ var placePiece = function(myToggle) {
   return playerPiece;
 }
 
-
 //Front End//
 $(document).ready(function() {
 
    // Create first board
-   var newBoard = new Board();
-
+   var myBoard = createBoard();
 
   // tile select indicator
   $("div .tile").click(function() {
 
-    newBoard.playerTurn *= -1;
-    $(this).find("span").text(placePiece(newBoard.playerTurn));
+    myBoard.playerTurn *= -1;
+    $(this).find("span").text(placePiece(myBoard.playerTurn));
 
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");
