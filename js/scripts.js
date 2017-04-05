@@ -3,20 +3,22 @@
 // GAME BOARD
 function Board() {
   this.tilesArr = [];
-}
-Board.prototype.createBoard = function() {
-
-}
-Board.prototype.updateBoard = function() {
-
+  this.playerTurn = -1;
 }
 
-function Tile() {
-  this.color = color;
-}
-Tile.prototype.changeColor = function() {
+// Board.prototype.createBoard = function() {
+//
+// }
+// Board.prototype.updateBoard = function() {
+//
+// }
 
-}
+// function Tile() {
+//   this.color = color;
+// }
+// Tile.prototype.changeColor = function() {
+//
+// }
 
 
 var placePiece = function(myToggle) {
@@ -37,14 +39,13 @@ $(document).ready(function() {
 
    // Create first board
    var newBoard = new Board();
-   var pieceToggle = 1;
 
 
   // tile select indicator
   $("div .tile").click(function() {
 
-    pieceToggle *= -1;
-    $(this).find("span").text(placePiece(pieceToggle));
+    newBoard.playerTurn *= -1;
+    $(this).find("span").text(placePiece(newBoard.playerTurn));
 
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");
