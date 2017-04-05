@@ -48,8 +48,12 @@ $(document).ready(function() {
   //   $(".tileCol").show();
   // });
 
-  $("boardArea").click(function() {
-    // create board
+  $("div .tile").click(function() {
+
+    $(".tileCol .tile").removeClass("green-back");
+    $(".tileCol .tile").removeClass("white-back");
+
+    $(this).addClass("green-back");
   });
 
 });

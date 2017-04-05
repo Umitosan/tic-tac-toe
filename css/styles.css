@@ -1,5 +1,4 @@
 
-
 .user-input {
   text-align: center;
 }
@@ -8,9 +7,12 @@
   text-align: center;
 }
 
-.center-board {
-  /*text-align: center;*/
-  /*margin: 80px;*/
+.green-back {
+  background-color: lightgreen;
+}
+
+.white-back {
+  background-color: #FFF;
 }
 
 #row1 {
