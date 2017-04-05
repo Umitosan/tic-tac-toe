@@ -1,6 +1,6 @@
 //Back End//
 
-// GAME BOARD
+// GAME BOARD OBJECT
 function Board() {
   this.tilesArr = [];
   this.playerTurn = -1;
@@ -16,10 +16,7 @@ var createBoard = function() {
   return newBoard;
 }
 
-// Board.prototype.updateBoard = function() {
-//
-// }
-
+// TILE OBJECT
 function Tile() {
   this.piece = "";
 }
@@ -36,6 +33,18 @@ var placePiece = function(myToggle) {
   return playerPiece;
 }
 
+//
+// var isMoveLegal = function() {
+//
+//
+//   if myBoard
+//     myBoard.playerTurn *= -1;
+//   if not ok
+//
+//
+// }
+
+
 //Front End//
 $(document).ready(function() {
 
@@ -48,6 +57,7 @@ $(document).ready(function() {
     myBoard.playerTurn *= -1;
     $(this).find("span").text(placePiece(myBoard.playerTurn));
 
+    // indicate selected tile
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");
     $(this).addClass("green-back");
