@@ -11,10 +11,10 @@ function Board() {
   this.playerTurn = -1;
 }
 
-Board.prototype.winnerChickenDinner = function() {
-  checkHoriz();
-  // checkVert();
-  // checkDiagonAlley();
+Board.prototype.winnerChickenDinner = function(tmpBoard) {
+  this.checkHoriz(tmpBoard);
+  this.checkVert(tmpBoard);
+  this.checkDiagonAlley(tmpBoard);
 }
 
 // check rows for win, works for X and O
@@ -31,27 +31,29 @@ Board.prototype.checkHoriz = function(tmpIndex) {
   }
 }
 
-// Board.prototype.checkVert = function () {
-//   if 0 3 6 {
-//
-//   } else if 1 4 7 {
-//
-//   } else if 2 5 8 {
-//
-//   } else {
-//     console.log("no winner yet");
-//   }
-// }
-//
-// Board.prototype.checkDiagonAlley = function () {
-//   if 0 4 8 {
-//
-//   } else if 6 4 2 {
-//
-//   } else {
-//     console.log("no winner yet");
-//   }
-// }
+Board.prototype.checkVert = function (tmpIndex) {
+  var tmpPiece = this.tilesArr[tmpIndex].piece;
+  if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[3].piece === tmpPiece) && (this.tilesArr[6].piece === tmpPiece)) {
+    console.log("winner");
+  } else if ((this.tilesArr[1].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[7].piece === tmpPiece)) {
+    console.log("winner");
+  } else if ((this.tilesArr[2].piece === tmpPiece) && (this.tilesArr[5].piece === tmpPiece) && (this.tilesArr[8].piece === tmpPiece)) {
+    console.log("winner");
+  } else {
+    console.log("soy un perdedor");
+  }
+}
+
+Board.prototype.checkDiagonAlley = function (tmpIndex) {
+  var tmpPiece = this.tilesArr[tmpIndex].piece;
+  if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece)) {
+    console.log("winner");
+  } else if ((this.tilesArr[6].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[2].piece === tmpPiece)) {
+    console.log("winner");
+  } else {
+    console.log("soy un perdedor");
+  }
+}
 
 // create board object and fill it with tile objects
 var createBoard = function() {
@@ -95,7 +97,7 @@ var isMoveLegal = function(tmpTile) {
   } else {
     tmpBool =  false;
   }
-  console.log("tmpBool: " , tmpBool);
+  console.log("islegalmove? tmpBool: " , tmpBool);
   return tmpBool;
 }  // END isMoveLegal function
 
@@ -108,8 +110,8 @@ $(document).ready(function() {
   $("div .tile").click(function() {
     let thisTileIndex = $(this).attr("value");
     $(this).find("span").text(placePiece(myBoard , thisTileIndex));
-    // console.log("Check horiz win? " ,myBoard);
-    myBoard.checkHoriz(thisTileIndex);
+    // check for a winner
+    myBoard.winnerChickenDinner(thisTileIndex);
     // indicate selected tile
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");
