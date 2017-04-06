@@ -123,8 +123,8 @@ $(document).ready(function() {
   $("#btnPlay").click(function(){
     firstPlayer = $("#player-one-name").val();
     secondPlayer = $("#player-two-name").val();
-    $("#player-x").text(firstPlayer);
-    $("#player-o").text(secondPlayer);
+    $("#player-x").text(firstPlayer.toUpperCase());
+    $("#player-o").text(secondPlayer.toUpperCase());
     $(".user-input").hide();
     $(".players-labels").fadeIn(2000);
     $(".center-board").fadeIn(1000);

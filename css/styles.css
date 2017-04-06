@@ -38,6 +38,17 @@
   height: 80px;
 }
 
+.btn {
+  background-color: #000;
+  border-color: #000;
+  color: #e2e2e2;
+
+}
+
+.btn:hover {
+  color: #FFF;
+}
+
 .imgFlip {
   -moz-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
@@ -61,16 +72,18 @@ h1 {
 
 #player-x {
   font-size: 35px;
-  color: #08541a;
+  color: #e2e2e2;
+  text-shadow: 1px 1px 2px #000;
 }
 
 #player-o {
   font-size: 35px;
-  color: #08541a;
+  color: #e2e2e2;
+  text-shadow: 0px 0px 1px #000;
 }
 
 .green-back {
-  background-color: #d3ffdd;
+  background-color: #e2e2e2;
 }
 
 .white-back {
