@@ -11,48 +11,54 @@ function Board() {
   this.playerTurn = -1;
 }
 
-Board.prototype.winnerChickenDinner = function(tmpBoard) {
-  this.checkHoriz(tmpBoard);
-  this.checkVert(tmpBoard);
-  this.checkDiagonAlley(tmpBoard);
+Board.prototype.winnerChickenDinner = function(tileIndex) {
+  var winningPlayer = "";
+  winningPlayer = this.checkHoriz(tileIndex, winningPlayer);
+  winningPlayer = this.checkVert(tileIndex, winningPlayer);
+  winningPlayer = this.checkDiagonAlley(tileIndex, winningPlayer);
+  console.log("winningPlayer: " , winningPlayer);
+  return winningPlayer;
 }
 
 // check rows for win, works for X and O
-Board.prototype.checkHoriz = function(tmpIndex) {
+Board.prototype.checkHoriz = function(tmpIndex, winningPlayerH) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
   if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[1].piece === tmpPiece) && (this.tilesArr[2].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerH = this.tilesArr[tmpIndex].piece;
   } else if ((this.tilesArr[3].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[5].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerH = this.tilesArr[tmpIndex].piece;
   } else if ((this.tilesArr[6].piece === tmpPiece) && (this.tilesArr[7].piece === tmpPiece) && (this.tilesArr[8].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerH = this.tilesArr[tmpIndex].piece;
   } else {
     console.log("soy un perdedor");
   }
+  return winningPlayerH;
 }
 
-Board.prototype.checkVert = function (tmpIndex) {
+Board.prototype.checkVert = function (tmpIndex, winningPlayerV) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
   if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[3].piece === tmpPiece) && (this.tilesArr[6].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerV = this.tilesArr[tmpIndex].piece;
   } else if ((this.tilesArr[1].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[7].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerV = this.tilesArr[tmpIndex].piece;
   } else if ((this.tilesArr[2].piece === tmpPiece) && (this.tilesArr[5].piece === tmpPiece) && (this.tilesArr[8].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerV = this.tilesArr[tmpIndex].piece;
   } else {
     console.log("soy un perdedor");
   }
+  return winningPlayerV;
 }
 
-Board.prototype.checkDiagonAlley = function (tmpIndex) {
+Board.prototype.checkDiagonAlley = function (tmpIndex, winningPlayerD) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
-  if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece)) {
-    console.log("winner");
+  if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[8].piece === tmpPiece)) {
+    winningPlayerD = this.tilesArr[tmpIndex].piece;
   } else if ((this.tilesArr[6].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[2].piece === tmpPiece)) {
-    console.log("winner");
+    winningPlayerD = this.tilesArr[tmpIndex].piece;
   } else {
     console.log("soy un perdedor");
   }
+  return winningPlayerD;
 }
 
 // create board object and fill it with tile objects
@@ -110,8 +116,15 @@ $(document).ready(function() {
   $("div .tile").click(function() {
     let thisTileIndex = $(this).attr("value");
     $(this).find("span").text(placePiece(myBoard , thisTileIndex));
-    // check for a winner
-    myBoard.winnerChickenDinner(thisTileIndex);
+
+    // check for winner
+    let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
+    // display winner if true
+    if (finalWinner !== "") {
+      $(".winner").show(finalWinner);
+      $("#player-winner").text(finalWinner);
+    }
+
     // indicate selected tile
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");

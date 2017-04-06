@@ -7,16 +7,18 @@
   text-align: center;
 }
 
+.winner {
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
 .green-back {
   background-color: lightgreen;
 }
 
 .white-back {
   background-color: #FFF;
-}
-
-#row1 {
-
 }
 
 #row1 div {
