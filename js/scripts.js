@@ -115,28 +115,14 @@ var isMoveLegal = function(tmpTile) {
 $(document).ready(function() {
   // Create first board
   var myBoard = createBoard();
-  // tile select indicator
-  $("div .tile").click(function() {
-    let thisTileIndex = $(this).attr("value");
-    $(this).find("span").text(placePiece(myBoard , thisTileIndex));
+  $("#flipper").text("<-");
+  var firstPlayer;
+  var secondPlayer;
 
-    // check for winner
-    let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
-    // display winner if true
-    if (finalWinner !== "") {
-      $(".winner").show(finalWinner);
-      $("#player-winner").text(finalWinner);
-    }
-
-    // indicate selected tile
-    $(".tileCol .tile").removeClass("green-back");
-    $(".tileCol .tile").removeClass("white-back");
-    $(this).addClass("green-back");
-  });
-
+  // CLICK LETS PLAY
   $("button.btn").click(function(){
-    var firstPlayer = $("#player-one-name").val();
-    var secondPlayer = $("#player-two-name").val();
+    firstPlayer = $("#player-one-name").val();
+    secondPlayer = $("#player-two-name").val();
     $("#player-x").text(firstPlayer);
     $("#player-o").text(secondPlayer);
     $(".user-input").hide();
@@ -144,5 +130,40 @@ $(document).ready(function() {
     $(".center-board").fadeIn(1000);
   });
 
+  // CLICK TILE
+  $("div .tile").click(function() {
+    let thisTileIndex = $(this).attr("value");
+    $(this).find("span").text(placePiece(myBoard , thisTileIndex));
+
+    // check for winner
+    let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
+    // display winner
+    if (finalWinner !== "") {
+      if (finalWinner === "X") {
+        finalWinner = firstPlayer;
+      } else if (finalWinner === "O") {
+        finalWinner = secondPlayer;
+      } else {
+        console.log("W T H?!");
+      }
+      $("#player-winner").text(finalWinner.toUpperCase());
+      $(".winner-area").show();
+    }
+
+    // Update flipper
+    $("#flipper").text("");
+    if (myBoard.playerTurn === -1) {
+      $("#flipper").text("<-");
+    } else if (myBoard.playerTurn === 1) {
+      $("#flipper").text("->");
+    } else {
+      console.log("what happened?");
+    }
+
+    // Hilight selected tile
+    $(".tileCol .tile").removeClass("green-back");
+    $(".tileCol .tile").removeClass("white-back");
+    $(this).addClass("green-back");
+  });
 
 });
