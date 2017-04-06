@@ -120,7 +120,7 @@ $(document).ready(function() {
   var secondPlayer;
 
   // CLICK LETS PLAY
-  $("button.btn").click(function(){
+  $("#btnPlay").click(function(){
     firstPlayer = $("#player-one-name").val();
     secondPlayer = $("#player-two-name").val();
     $("#player-x").text(firstPlayer);
@@ -148,6 +148,8 @@ $(document).ready(function() {
         console.log("W T H?!");
       }
       $("#player-winner").text(finalWinner.toUpperCase());
+      $(".players-labels").hide();
+      $(".center-board").hide();
       $(".winner-area").show();
     }
 
@@ -164,6 +166,10 @@ $(document).ready(function() {
     $(".tileCol .tile").removeClass("green-back");
     $(".tileCol .tile").removeClass("white-back");
     $(this).addClass("green-back");
+  });
+
+  $("#btnReset").click(function() {
+    location.reload();
   });
 
 });
