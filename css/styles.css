@@ -21,11 +21,22 @@
   text-shadow: 5px 5px 6px #7ae291;
 }
 
-
 .players-labels {
   text-align: center;
   margin-bottom: 40px;
   display: none;
+}
+
+.players-labels img {
+  height: 80px;
+}
+
+.imgFlip {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  filter: FlipH;
 }
 
 .center-board {

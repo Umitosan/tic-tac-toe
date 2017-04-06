@@ -128,6 +128,7 @@ $(document).ready(function() {
     $(".user-input").hide();
     $(".players-labels").fadeIn(2000);
     $(".center-board").fadeIn(1000);
+    $(".players-labels img").addClass("imgFlip");
   });
 
   // CLICK TILE
@@ -151,11 +152,10 @@ $(document).ready(function() {
     }
 
     // Update flipper
-    $("#flipper").text("");
     if (myBoard.playerTurn === -1) {
-      $("#flipper").text("<-");
+      $(".players-labels img").addClass("imgFlip");
     } else if (myBoard.playerTurn === 1) {
-      $("#flipper").text("->");
+      $(".players-labels img").removeClass("imgFlip");
     } else {
       console.log("what happened?");
     }
