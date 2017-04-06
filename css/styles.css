@@ -5,12 +5,12 @@
 
 .jumbotron {
   text-align: center;
-  background-color: black;
+  background-color: #8c99ad;
 }
 
 .jumbotron h1 {
-  color:black;
-  text-shadow: 0px 0px 1px #FFF;
+  color:#8c99ad;
+  text-shadow: 0px 0px 2px #FFF;
   font-size: 100px;
 }
 
@@ -39,10 +39,9 @@
 }
 
 .btn {
-  background-color: #000;
-  border-color: #000;
+  background-color: #8c99ad;
+  border-color: ##212121;
   color: #e2e2e2;
-
 }
 
 .btn:hover {
@@ -72,18 +71,18 @@ h1 {
 
 #player-x {
   font-size: 35px;
-  color: #e2e2e2;
+  color: #2E2E2E;
   text-shadow: 1px 1px 2px #000;
 }
 
 #player-o {
   font-size: 35px;
-  color: #e2e2e2;
+  color: #2E2E2E;
   text-shadow: 0px 0px 1px #000;
 }
 
 .green-back {
-  background-color: #e2e2e2;
+  background-color: #bac5d6;
 }
 
 .white-back {

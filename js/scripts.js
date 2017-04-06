@@ -138,8 +138,21 @@ $(document).ready(function() {
 
     // check for winner
     let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
+    // function tie
+
+    var tmpCounter = 0;
+    myBoard.tilesArr.forEach(function(tmpTile) {
+      if (this.piece === "") {
+        tmpCounter += 1;
+      }
+      return tmpCounter;
+    });
+
+    // display tie output
+    
+
     // display winner
-    if (finalWinner !== "") {
+    if ((finalWinner !== "") && (tmpCounter !== 9)) {
       if (finalWinner === "X") {
         finalWinner = firstPlayer;
       } else if (finalWinner === "O") {
@@ -152,6 +165,7 @@ $(document).ready(function() {
       $(".center-board").hide();
       $(".winner-area").show();
     }
+
 
     // Update flipper
     if (myBoard.playerTurn === -1) {
