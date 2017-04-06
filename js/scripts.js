@@ -21,28 +21,38 @@ function Tile() {
   this.piece = "";
 }
 
-var placePiece = function(myToggle) {
+var placePiece = function(tmpBoard , clickedIndex) {
   let playerPiece = "";
-  if (myToggle === 1) {
-    playerPiece = "X";
-  } else if (myToggle === -1) {
-    playerPiece = "O";
+  if (isMoveLegal(tmpBoard.tilesArr[clickedIndex]) === true) {
+    tmpBoard.playerTurn *= -1;
+    if (tmpBoard.playerTurn === 1) {
+      playerPiece = "X"
+      tmpBoard.tilesArr[clickedIndex].piece = "X";
+    } else if (tmpBoard.playerTurn === -1) {
+      playerPiece = "O";
+      tmpBoard.tilesArr[clickedIndex].piece = "O";
+    } else {
+      console.log("somehting wrong")
+    }
   } else {
-    console.log("somehting wrong")
+    playerPiece = tmpBoard.tilesArr[clickedIndex].piece;
+    console.log("returned same piece, wiggle later");
   }
+  console.log("turn: " , tmpBoard.playerTurn);
   return playerPiece;
-}
+} // placePiece function end
 
-//
-// var isMoveLegal = function() {
-//
-//
-//   if myBoard
-//     myBoard.playerTurn *= -1;
-//   if not ok
-//
-//
-// }
+
+var isMoveLegal = function(tmpTile) {
+  var tmpBool;
+  if (tmpTile.piece === "") {
+    tmpBool = true;
+  } else {
+    tmpBool =  false;
+  }
+  console.log("tmpBool: " , tmpBool);
+  return tmpBool;
+}
 
 
 //Front End//
@@ -54,8 +64,9 @@ $(document).ready(function() {
   // tile select indicator
   $("div .tile").click(function() {
 
-    myBoard.playerTurn *= -1;
-    $(this).find("span").text(placePiece(myBoard.playerTurn));
+    let thisTileIndex = $(this).attr("value");
+
+    $(this).find("span").text(placePiece(myBoard , thisTileIndex));
 
     // indicate selected tile
     $(".tileCol .tile").removeClass("green-back");
