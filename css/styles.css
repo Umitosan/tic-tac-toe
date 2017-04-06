@@ -13,6 +13,31 @@
   display: none;
 }
 
+.players-labels {
+  text-align: center;
+  margin-bottom: 40px;
+  display: none;
+}
+
+.center-board {
+  display: none;
+}
+
+h3 {
+  display: inline;
+  margin: 10%;
+}
+
+#player-x {
+  font-size: 35px;
+  color: green;
+}
+
+#player-o {
+  font-size: 35px;
+  color: green;
+}
+
 .green-back {
   background-color: lightgreen;
 }

@@ -11,6 +11,7 @@ function Board() {
   this.playerTurn = -1;
 }
 
+// Master WINNER checking function
 Board.prototype.winnerChickenDinner = function(tileIndex) {
   var winningPlayer = "";
   winningPlayer = this.checkHoriz(tileIndex, winningPlayer);
@@ -20,7 +21,7 @@ Board.prototype.winnerChickenDinner = function(tileIndex) {
   return winningPlayer;
 }
 
-// check rows for win, works for X and O
+// check HORIZONTALLY for winner
 Board.prototype.checkHoriz = function(tmpIndex, winningPlayerH) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
   if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[1].piece === tmpPiece) && (this.tilesArr[2].piece === tmpPiece)) {
@@ -35,6 +36,7 @@ Board.prototype.checkHoriz = function(tmpIndex, winningPlayerH) {
   return winningPlayerH;
 }
 
+// check VERTICALLY for winner
 Board.prototype.checkVert = function (tmpIndex, winningPlayerV) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
   if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[3].piece === tmpPiece) && (this.tilesArr[6].piece === tmpPiece)) {
@@ -49,6 +51,7 @@ Board.prototype.checkVert = function (tmpIndex, winningPlayerV) {
   return winningPlayerV;
 }
 
+// check DIAGON_ALLEY for winner
 Board.prototype.checkDiagonAlley = function (tmpIndex, winningPlayerD) {
   var tmpPiece = this.tilesArr[tmpIndex].piece;
   if ((this.tilesArr[0].piece === tmpPiece) && (this.tilesArr[4].piece === tmpPiece) && (this.tilesArr[8].piece === tmpPiece)) {
@@ -130,4 +133,16 @@ $(document).ready(function() {
     $(".tileCol .tile").removeClass("white-back");
     $(this).addClass("green-back");
   });
+
+  $("button.btn").click(function(){
+    var firstPlayer = $("#player-one-name").val();
+    var secondPlayer = $("#player-two-name").val();
+    $("#player-x").text(firstPlayer);
+    $("#player-o").text(secondPlayer);
+    $(".user-input").hide();
+    $(".players-labels").fadeIn(2000);
+    $(".center-board").fadeIn(1000);
+  });
+
+
 });
