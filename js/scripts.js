@@ -155,7 +155,7 @@ $(document).ready(function() {
     let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
 
     // check for winner or tie
-    if (isTie(myBoard) === true) {
+    if ((isTie(myBoard) === true) && (finalWinner === "")) {
       console.log("the game is a tie");
       $(".players-labels").hide();
       $(".center-board").hide();
