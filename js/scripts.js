@@ -17,7 +17,6 @@ Board.prototype.winnerChickenDinner = function(tileIndex) {
   winningPlayer = this.checkHoriz(tileIndex, winningPlayer);
   winningPlayer = this.checkVert(tileIndex, winningPlayer);
   winningPlayer = this.checkDiagonAlley(tileIndex, winningPlayer);
-  console.log("winningPlayer: " , winningPlayer);
   return winningPlayer;
 }
 
@@ -88,13 +87,11 @@ var placePiece = function(tmpBoard , clickedIndex) {
       playerPiece = "O";
       tmpBoard.tilesArr[clickedIndex].piece = "O";
     } else {
-      console.log("somehting wrong")
+      console.log("W T H?!");
     }
   } else {
     playerPiece = tmpBoard.tilesArr[clickedIndex].piece;
-    console.log("returned same piece, wiggle later");
   }
-  console.log("turn: " , tmpBoard.playerTurn);
   return playerPiece;
 } // END placePiece function
 
@@ -106,18 +103,36 @@ var isMoveLegal = function(tmpTile) {
   } else {
     tmpBool =  false;
   }
-  console.log("islegalmove? tmpBool: " , tmpBool);
   return tmpBool;
 }  // END isMoveLegal function
+
+// tie checker
+var isTie = function(tmpBoard1) {
+  var isNine = false;
+  var tmpCount = 0;
+  tmpBoard1.tilesArr.forEach(function(tmpTile) {
+    // console.log("tmpTile: " , tmpTile);
+    if (tmpTile.piece === "") {
+      tmpCount += 1;
+    };
+  });
+  if (tmpCount === 0) {
+    isNine = true;
+  } else {
+    isNine = false;
+  }
+  return isNine;
+}  // end tie checker
 
 
 //Front End//
 $(document).ready(function() {
-  // Create first board
+
+  // global
   var myBoard = createBoard();
-  $("#flipper").text("<-");
   var firstPlayer;
   var secondPlayer;
+  var counterMain;
 
   // CLICK LETS PLAY
   $("#btnPlay").click(function(){
@@ -136,23 +151,18 @@ $(document).ready(function() {
     let thisTileIndex = $(this).attr("value");
     $(this).find("span").text(placePiece(myBoard , thisTileIndex));
 
-    // check for winner
+    // check for winner char
     let finalWinner = myBoard.winnerChickenDinner(thisTileIndex);
-    // function tie
 
-    var tmpCounter = 0;
-    myBoard.tilesArr.forEach(function(tmpTile) {
-      if (this.piece === "") {
-        tmpCounter += 1;
-      }
-      return tmpCounter;
-    });
-
-    // display tie output
-    
-
-    // display winner
-    if ((finalWinner !== "") && (tmpCounter !== 9)) {
+    // check for winner or tie
+    if (isTie(myBoard) === true) {
+      console.log("the game is a tie");
+      $(".players-labels").hide();
+      $(".center-board").hide();
+      $(".winner-area").show();
+      $(".winner-area h3").hide();
+      $("#player-winner").text("Game is a tie");
+    } else if ((finalWinner !== "") && (counterMain !== 9)) {
       if (finalWinner === "X") {
         finalWinner = firstPlayer;
       } else if (finalWinner === "O") {
@@ -166,14 +176,13 @@ $(document).ready(function() {
       $(".winner-area").show();
     }
 
-
     // Update flipper
     if (myBoard.playerTurn === -1) {
       $(".players-labels img").addClass("imgFlip");
     } else if (myBoard.playerTurn === 1) {
       $(".players-labels img").removeClass("imgFlip");
     } else {
-      console.log("what happened?");
+      console.log("W T H?!");
     }
 
     // Hilight selected tile
