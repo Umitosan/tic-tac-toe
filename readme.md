@@ -18,7 +18,7 @@ This web-app aspires to be a fully functional tic-tac-toe board game between two
 | The page will indicate when the game is over and proclaim a winner | winning condition is met | page changes it's look |
 |  |  |  |
 
-_link to site on Github : _
+* live app [HERE](https://umitosan.github.io/tic-tac-toe/)
 
 ## Setup/Installation Requirements
 
