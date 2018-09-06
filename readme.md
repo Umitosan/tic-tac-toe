@@ -4,6 +4,8 @@
 
 This web-app aspires to be a fully functional tic-tac-toe board game between two human players or a human player and the computer.
 
+* live app [HERE](https://umitosan.github.io/tic-tac-toe/)
+
 #### By _**Kat Gifford & Dom Brown for Epicodus**_
 
 ## Specifications
@@ -17,8 +19,6 @@ This web-app aspires to be a fully functional tic-tac-toe board game between two
 | The board state will not change when a player clicks on any tile defined by previous turns | player X clicks on tile with O | board does nothing |
 | The page will indicate when the game is over and proclaim a winner | winning condition is met | page changes it's look |
 |  |  |  |
-
-* live app [HERE](https://umitosan.github.io/tic-tac-toe/)
 
 ## Setup/Installation Requirements
 
